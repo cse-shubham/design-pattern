@@ -1,14 +1,14 @@
 package strategy;
 
 public class CreditCardPayment implements PaymentStrategy {
-    String giftCardNumber;
-    
+	String giftCardNumber;
+
 	@Override
 	public boolean pay(Long amount) {
 		System.out.println("Entering gc number");
-        return makePayment(amount);
+		return makePayment(amount);
 	}
-	
+
 	public boolean makePayment(Long amount) {
 		// api calls send card data to API
 		try {

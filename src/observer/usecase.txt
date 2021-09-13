@@ -1,0 +1,7 @@
+Observable is a Product application that can send data to multiple subscribers 
+regarding product update
+Table containing subscriberId | updateLink | isActive | authCode 
+Once a new information regarding a product is available needs to be pushed to all subscribers
+
+Get a list of applicable subscribers from DB
+based on the updateLink send info to each subscriber

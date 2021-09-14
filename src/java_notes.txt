@@ -1,0 +1,53 @@
+System.out.println()
+
+-----------------------------
+System class 
+-----------------------------
+public final static PrintStream out = null
+public static void setOut(PrintStream out){
+	checkIO();
+	setOut0(); // this is native method
+}
+??how these PrintStream is initialized??
+-----------------------------
+ServerMainClass
+-----------------------------
+private void redirectIOStreams() {
+	// log directory info
+	System.setOut(pSout) // sends a PrintStreamObject	
+}
+// JVM process starts with this run method
+public void run(){
+   redirectIOStreams();
+   // classloaders that loads JDK lib
+}
+public static void main(String[] args){
+	ServerMain server = new ServerMain()
+	server.run(args)
+}
+-----------------------------
+At this point, when JVM starts ServerMain creates object
+of PrintStream and injects it in System class
+-----------------------------
+PrintStream.java
+-----------------------------
+// has bufferWriter and OutPutStreamWriter
+// overloaded method for each specific primitive, else code is same
+public void println(String x){
+	synchronized(this){
+		print(x);
+		newLine();
+	}
+}
+
+public void print(String s){
+	if( s == null)
+	    s = "null"
+	write(s)    
+}
+
+public void print(Object obj) { write(String.valueOf(obj))} 
+//valueOf calls toString on object
+=====================================================================
+
+

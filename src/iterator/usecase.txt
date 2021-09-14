@@ -1,0 +1,50 @@
+public interface Iterable<T> {
+
+	Iterator<T> iterator();
+}
+
+public interface Iterator<T> {
+
+    boolean hasNext();
+    T next();
+    
+    // JAVA 8 default methods
+    default void remove() { throw new UnsupportedOperationException("remove");}
+    default void forEachRemaining(Consumer<? super T> action){
+    	Objects.requiresNonNull(action);
+    	while (hasNext())
+    	   action.accept(next())
+    }
+}  
+
+// collection implements iterable
+// provide implementation of this method and return concrete implementation of Iterator interface 
+// concrete def created a nested class
+public class ArrayList extends Collection,B,C {
+
+ //some code
+ public Iterator<E> iterator() {
+ 	new Itr();
+ }
+ 
+ private class Itr implements Iterator<E> {
+    int cursor;
+    int lastRet = -1;
+    int expectedModCount = modCount;
+    
+    Itr() {}
+    public boolean hasNext() { cursor != size;}
+    
+    public E next(){
+    	checkForComodification();	
+        int i = cursor;
+        if(i >=size ) throw exception
+        // some code
+        Object[] elementData = ArrayList.this.elementData;
+        cursor = i + 1;
+        return (E) elementData[lastRet = i];
+    }
+ }
+
+
+} 
